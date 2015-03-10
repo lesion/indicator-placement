@@ -25,8 +25,6 @@ import os.path
 import locale
 import argparse
 from locale import gettext as _
-from functools import wraps
-import signal #needed to send signal if another process is running
 
 
 class Placement:
@@ -40,7 +38,7 @@ class Placement:
         # Delete/modify the following file when distributing as a package
         self.ind.set_icon_theme_path(os.path.abspath(os.path.join(
             os.path.dirname(__file__), 'Icons')))
-        self.ind.set_icon("indicator-stickynotes")
+        self.ind.set_icon_full("emblem-default","Placement Indicator")
         self.ind.set_status(appindicator.IndicatorStatus.ACTIVE)
         self.ind.set_title(_("Placement"))
         # Create Menu
