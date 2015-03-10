@@ -27,9 +27,10 @@ I've started this little script reading [this blog entry](http://movingtofreedom
 After cloning it and install npm dependencies:
 
 `chmod +x poswin.js`
+
 `./poswin.js save`
 
-this will create a ~/.poswin.json
+this will create a `~/.poswin.json`
 
 to reload position:
 
