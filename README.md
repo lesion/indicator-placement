@@ -1,7 +1,7 @@
 # poswin
 Remember windows desktop/position/size for Linux WM / gnome / kde / gala 
 
-# WARNING!! THIS IS AN ALPHA RELEASE !!
+## WARNING!! THIS IS AN ALPHA RELEASE !!
 
 ## What poswin does?
 It simply remember windows position/size on linux wm
@@ -21,3 +21,18 @@ http://ubuntuforums.org/showthread.php?t=1173410
 I'm using [wmctrl](http://en.wikipedia.org/wiki/Wmctrl) to retrieve and restore windows placement and size on desktop.
 
 I've started this little script reading [this blog entry](http://movingtofreedom.org/2010/08/10/arranging-windows-from-the-gnulinux-command-line-with-wmctrl/)
+
+## How to use
+
+After cloning it and install npm dependencies:
+
+`chmod +x poswin.js`
+`./poswin.js save`
+
+this will create a ~/.poswin.json
+
+to reload position:
+
+`./poswin.js load`
+
+
