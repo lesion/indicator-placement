@@ -1,0 +1,36 @@
+{
+  "name": "poswin",
+  "version": "0.0.1",
+  "description": "Remember windows desktop/position/size for Linux WM / gnome / kde / gala ",
+  "main": "poswin.js",
+  "dependencies": {
+    "es6-promise": "^2.0.1",
+    "nconf": "^0.7.1",
+    "osenv": "^0.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lesion/poswin.git"
+  },
+  "keywords": [
+    "wm",
+    "linux",
+    "ubuntu",
+    "gnome",
+    "kde",
+    "gala",
+    "window",
+    "position",
+    "resize",
+    "desktop"
+  ],
+  "author": "Rocco De Patto <rocco.depatto@gmail.com> (http://lesion.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lesion/poswin/issues"
+  },
+  "homepage": "https://github.com/lesion/poswin"
+}
