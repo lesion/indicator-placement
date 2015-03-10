@@ -2,7 +2,6 @@
 
 "use strict";
 
-
 var nconf = require('nconf');
 var spawn = require('child_process').spawn;
 var osenv = require('osenv');
@@ -84,8 +83,12 @@ function restore_win(curr_windows, win_to_restore) {
               ['0', win_to_restore.x, win_to_restore.y, win_to_restore.width,
               win_to_restore.height].join(',')];
 
+  console.log(args.join(' '));
+
+  //move to correct desktop
   spawn('wmctrl', args);
-  // move to desktop
+
+  //restore position and size
 
 }
 
