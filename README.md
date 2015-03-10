@@ -18,6 +18,6 @@ http://ubuntuforums.org/showthread.php?t=1173410
 
 
 ## How it works?
-I'm using [http://en.wikipedia.org/wiki/Wmctrl](wmctrl) to retrieve and restore windows placement and size on desktop.
+I'm using [wmctrl](http://en.wikipedia.org/wiki/Wmctrl) to retrieve and restore windows placement and size on desktop.
 
-I've started this little script reading [http://movingtofreedom.org/2010/08/10/arranging-windows-from-the-gnulinux-command-line-with-wmctrl/](this blog entry)
+I've started this little script reading [this blog entry](http://movingtofreedom.org/2010/08/10/arranging-windows-from-the-gnulinux-command-line-with-wmctrl/)
