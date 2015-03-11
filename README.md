@@ -1,4 +1,4 @@
-# poswin
+# placement-indicator
 Remember windows desktop/position/size for Linux WM / gnome / kde / gala 
 
 ## WARNING!! THIS IS AN ALPHA RELEASE !!
