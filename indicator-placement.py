@@ -96,12 +96,28 @@ class Placement:
 
     def restoreWin(self,win,config):
         print ("Restoring win %s" % (win))
+        # searching for win in config
+        for c in config:
+            if config[c]['name']!=win['name']: continue
+            break
+        win_data = config[c]
+
+        desktop_placement = ['wmctrl', '-i', '-r', win['id'], '-t', win_data['desktop']]
+        resize_placement = ['wmctrl', '-i', '-r', win['id'],'-e',
+                            "%d,%s,%s,%s,%s" % ( 0, win_data['x'],
+                            win_data['y'], win_data['width'],win_data['height'])]
+#        print(desktop_placement)
+#        print(resize_placement)
+#        //move to correct desktop
+        subprocess.check_call(desktop_placement)
+        subprocess.check_call(resize_placement)
 
 
     def loadSession(self,*args):
         print ("Inside load Session")
         # parse .placement.json
         config = self.loadConfig()
+        print(config)
 
 
         # get current windows info (placement/size)
@@ -110,10 +126,8 @@ class Placement:
         # for each current window, search for it in placement.json
         # and restore size/position/desktop if needed
         for win in curr_windows:
-            print(win)
             if (win['desktop'] == "-1" or "indicator" in win['name']): continue
-
-            self.restoreWin(win['id'],config)
+            self.restoreWin(win,config)
 
 
     def saveSession(self,*args):
