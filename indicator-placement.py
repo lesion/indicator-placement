@@ -75,6 +75,7 @@ class Placement:
         windows = windows.strip().split("\n");
         for line in windows:
             w_specs = ' '.join(line.split()).split(" ")
+            if(w_specs[1]=="-1" or "indicator" in w_specs[6]): continue
             current_windows.append({
                         'id': w_specs[0],
                         'desktop': w_specs[1],
@@ -92,10 +93,12 @@ class Placement:
         home = expanduser("~")
         with open(os.path.join(home,'.poswin.json'), 'r') as f:
             config = json.load(f)
+            f.close()
         return config
 
+
     def restoreWin(self,win,config):
-        print ("Restoring win %s" % (win))
+
         # searching for win in config
         for c in config:
             if config[c]['name']!=win['name']: continue
@@ -106,19 +109,17 @@ class Placement:
         resize_placement = ['wmctrl', '-i', '-r', win['id'],'-e',
                             "%d,%s,%s,%s,%s" % ( 0, win_data['x'],
                             win_data['y'], win_data['width'],win_data['height'])]
-#        print(desktop_placement)
-#        print(resize_placement)
-#        //move to correct desktop
+
+        # move to correct desktop
         subprocess.check_call(desktop_placement)
+
+        # move to correct location and resize
         subprocess.check_call(resize_placement)
 
 
     def loadSession(self,*args):
-        print ("Inside load Session")
         # parse .placement.json
         config = self.loadConfig()
-        print(config)
-
 
         # get current windows info (placement/size)
         curr_windows = self.getSession()
@@ -131,9 +132,12 @@ class Placement:
 
 
     def saveSession(self,*args):
-        print ("Inside save Session")
-
-
+        curr_windows = self.getSession()
+        home = expanduser("~")
+        print (curr_windows)
+        with open(os.path.join(home,'.poswin.json'), 'w') as f:
+            json.dump(curr_windows,f)
+        f.close()
 
 def main():
     try:
@@ -150,7 +154,7 @@ def main():
     locale.textdomain('Placement')
 
     indicator = Placement()
-    indicator.loadSession();
+    indicator.saveSession();
     return
 
     Gtk.main()
