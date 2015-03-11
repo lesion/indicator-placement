@@ -100,10 +100,10 @@ class Placement:
     def restoreWin(self,win,config):
 
         # searching for win in config
-        for c in config:
-            if config[c]['name']!=win['name']: continue
+        for win_data in config:
+            if win_data['name']!=win['name']: continue
             break
-        win_data = config[c]
+#        win_data = config[c]
 
         desktop_placement = ['wmctrl', '-i', '-r', win['id'], '-t', win_data['desktop']]
         resize_placement = ['wmctrl', '-i', '-r', win['id'],'-e',
@@ -154,9 +154,6 @@ def main():
     locale.textdomain('Placement')
 
     indicator = Placement()
-    indicator.saveSession();
-    return
-
     Gtk.main()
 
 
