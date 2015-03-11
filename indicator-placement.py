@@ -23,14 +23,13 @@ from gi.repository import AppIndicator3 as appindicator
 
 import os.path
 import locale
-import argparse
 from locale import gettext as _
-
+import subprocess
+import json
 
 class Placement:
-    def __init__(self, args = None):
+    def __init__(self):
 
-        self.args = args
 
         self.ind = appindicator.Indicator.new(
                 " Placement", "indicator-placement",
@@ -63,13 +62,44 @@ class Placement:
         self.menu.append(self.mQuit)
         self.mQuit.connect("activate", Gtk.main_quit, None)
         self.mQuit.show()
+
         # Connect Indicator to menu
         self.ind.set_menu(self.menu)
 
-    def loadSession(self):
-        print ("Inside load Session")
 
-    def saveSession(self):
+    def getSession(self):
+        current_windows = []
+        windows = str(subprocess.check_output(["wmctrl",'-lxG'],universal_newlines=True))
+        windows = windows.strip().split("\n");
+        for line in windows:
+            w_specs = ' '.join(line.split()).split(" ")
+            current_windows.append({
+                        'id': w_specs[0],
+                        'desktop': w_specs[1],
+                        'x': w_specs[2],
+                        'y': w_specs[3],
+                        'width': w_specs[4],
+                        'height': w_specs[5],
+                        'name': w_specs[6]
+                })
+
+        return current_windows;
+
+
+
+    def loadSession(self,*args):
+        print ("Inside load Session")
+        # parse .placement.json
+
+
+        # get current windows info (placement/size)
+        print (self.getSession())
+
+        # for each current window, search for it in placement.json
+        # and restore size/position/desktop if needed
+
+
+    def saveSession(self,*args):
         print ("Inside save Session")
 
 
@@ -88,15 +118,11 @@ def main():
     locale.bindtextdomain('Placement', locale_dir)
     locale.textdomain('Placement')
 
-    parser = argparse.ArgumentParser(description=_("Placement"))
-#    parser.add_argument("-d", action='store_true', help="use the development"
-#            " data file")
-    args = parser.parse_args()
-
-    indicator = Placement(args)
+    indicator = Placement()
+    indicator.loadSession();
+    return
 
     Gtk.main()
-#    indicator.save()
 
 
 if __name__ == "__main__":
