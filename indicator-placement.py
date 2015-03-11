@@ -27,6 +27,8 @@ from locale import gettext as _
 import subprocess
 import json
 
+from os.path import expanduser
+
 class Placement:
     def __init__(self):
 
@@ -86,17 +88,32 @@ class Placement:
         return current_windows;
 
 
+    def loadConfig(self):
+        home = expanduser("~")
+        with open(os.path.join(home,'.poswin.json'), 'r') as f:
+            config = json.load(f)
+        return config
+
+    def restoreWin(self,win,config):
+        print ("Restoring win %s" % (win))
+
 
     def loadSession(self,*args):
         print ("Inside load Session")
         # parse .placement.json
+        config = self.loadConfig()
 
 
         # get current windows info (placement/size)
-        print (self.getSession())
+        curr_windows = self.getSession()
 
         # for each current window, search for it in placement.json
         # and restore size/position/desktop if needed
+        for win in curr_windows:
+            print(win)
+            if (win['desktop'] == "-1" or "indicator" in win['name']): continue
+
+            self.restoreWin(win['id'],config)
 
 
     def saveSession(self,*args):
