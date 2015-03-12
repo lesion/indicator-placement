@@ -20,20 +20,16 @@ http://ubuntuforums.org/showthread.php?t=1173410
 ## How it works?
 I'm using python3-xlib to retrieve and restore windows placement and size on desktop, so you need to install it with `apt-get install python3-xlib`.
 
-I've started this little script reading [this blog entry](http://movingtofreedom.org/2010/08/10/arranging-windows-from-the-gnulinux-command-line-with-wmctrl/)
 
 ## How to use
 
-After cloning it and install npm dependencies:
+After cloning it and install python3-xlib, run
+`./indicator-placement.py` , click on the indicator:
 
-`chmod +x poswin.js`
+1. Save session will store all windows placement (workspace, x/y and width/height)
 
-`./poswin.js save`
+2. Load session will restore all windows placement (workspace, x/y and width/height)
 
-this will create a `~/.poswin.json`
-
-to reload position:
-
-`./poswin.js load`
-
+## TODO
+ - Fullscreen windows aren't working!!!
 
