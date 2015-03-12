@@ -1,8 +1,6 @@
 # indicator-placement
 Remember windows desktop/position/size for Linux WM / gnome / kde / gala 
 
-## WARNING!! THIS IS AN ALPHA RELEASE !!
-
 ## What indicator-placement does?
 It simply remember windows position/size on linux wm
 
